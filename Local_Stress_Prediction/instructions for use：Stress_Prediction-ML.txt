@@ -1,0 +1,11 @@
+win+R输入cmd后按回车，打开命令提示符窗口。
+在命令提示符窗口分输入以下语句（一个安装成功后再安装下一个）。
+pip install pyinstaller
+
+pip install pyqt5
+
+pip install pandas
+
+pip install scikit-learn
+双击Stress_Prediction-ML.exe运行程序，输入对应几何参数点击OK得出预测值。
+每次结果对应输入参数可复制保存，便于分析。
