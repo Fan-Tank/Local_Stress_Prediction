@@ -26,6 +26,8 @@ pip install pandas
 pip install scikit-learn
 3.双击Stress_Prediction-ML.exe运行程序，输入对应几何参数点击OK得出预测值。
 4.每次结果对应输入参数可复制保存，便于分析。
+![GUI-1](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/8c48ff97-d456-498f-b6eb-df42dcb43284)
+
 
 The Local_Stress_Prediction package includes a mature stress prediction software, as well as a script and an ABAQUS plugin for generating datasets, all of which are publicly available.
 1. The mature stress prediction software can be used directly and is designed for Q345 material under ambient temperature conditions. It utilizes the pressure as a feature for machine learning to predict local stresses in Q345 pressure vessels at ambient temperature. In summary, it is suitable for predicting local stresses in Q345 pressure vessels under ambient temperature conditions.
@@ -40,7 +42,7 @@ instructions for use：GenerateDataset
 3. Open "GenerateDataset" and enter the parameters. Click "OK" to complete the batch analysis.
 4. In the folder "C:\temp\Local_pipe_analysis", you will find the "MaxMises.txt" file.
 5. Copy or convert the data into the desired format for your dataset.
-6. ![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/49572c2a-caaa-4e6a-9090-987c8b25dfff)
+![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/49572c2a-caaa-4e6a-9090-987c8b25dfff)
 
 instructions for use：Stress_Prediction-ML
 1. Press Win+R to open the Run dialog box, then type "cmd" and press Enter. This will open the Command Prompt window.
@@ -51,3 +53,5 @@ instructions for use：Stress_Prediction-ML
    - pip install scikit-learn
 3. Double-click on "Stress_Prediction-ML.exe" to run the program. Enter the corresponding geometric parameters and click OK to obtain the predicted values.
 4. You can copy and save the results for each set of input parameters for further analysis.
+![GUI-1](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/272e7740-fe9c-46c1-bdc3-c2b0d0729617)
+
