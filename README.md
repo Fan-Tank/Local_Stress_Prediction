@@ -24,6 +24,9 @@ pip install pyinstaller
 pip install pyqt5
 pip install pandas
 pip install scikit-learn
+pip install matplotlib
+pip install seaborn
+
 3.双击Stress_Prediction-ML.exe运行程序，输入对应几何参数点击OK得出预测值。
 4.每次结果对应输入参数可复制保存，便于分析。
 ![GUI-1](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/8c48ff97-d456-498f-b6eb-df42dcb43284)
@@ -47,10 +50,11 @@ instructions for use：GenerateDataset
 instructions for use：Stress_Prediction-ML
 1. Press Win+R to open the Run dialog box, then type "cmd" and press Enter. This will open the Command Prompt window.
 2. In the Command Prompt window, enter the following commands (install one after another once the previous one is installed):
-   - pip install pyinstaller
-   - pip install pyqt5
-   - pip install pandas
-   - pip install scikit-learn
+pip install pyqt5
+pip install pandas
+pip install scikit-learn
+pip install matplotlib
+pip install seaborn
 3. Double-click on "Stress_Prediction-ML.exe" to run the program. Enter the corresponding geometric parameters and click OK to obtain the predicted values.
 4. You can copy and save the results for each set of input parameters for further analysis.
 ![GUI-1](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/272e7740-fe9c-46c1-bdc3-c2b0d0729617)
