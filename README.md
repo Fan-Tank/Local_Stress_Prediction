@@ -9,9 +9,45 @@ Local_Stress_Prediction包括了一个成熟的应力预测软件，同时还公
 首先，进行机器学习之前，需要选择特征并使用ABAQUS软件对案例进行计算，以生成数据集（Data Set，DS）。其次，软件的开发主要集中在训练模型阶段，选择适当的模型进行训练，并对训练完成的模型进行评估，以确保其能够准确预测应力。最后，将训练好的模型内嵌在软件中，并创建图形用户界面（Graphical User Interface，GUI）。
 这一研究成果通过ABAQUS-机器学习的方式开发了压力容器局部应力的预测软件，避免了复杂的分析过程和主观性，为快速评估和优化压力容器的设计提供了一个可靠便捷的平台，也为其他的应力预测提供了方式借鉴。
 
+instructions for use：GenerateDataset
+1.将GenerateDataset文件夹复制在  ’C:\Users\用户名\abaqus_plugins‘  下。
+2.打开ABAQUS,在Plug-ins下可以找到GenerateDataset。
+2.打开GenerateDataset输入参数，点击OK即可完成批量分析。
+4.在文件夹C:\\temp\\Local_pipe_analysis下找到MaxMises.txt。
+5.将数据复制或转换为您需要的数据集格式即可。
+![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/49572c2a-caaa-4e6a-9090-987c8b25dfff)
+
+instructions for use：Stress_Prediction-ML
+1.win+R输入cmd后按回车，打开命令提示符窗口。
+2.在命令提示符窗口分输入以下语句（一个安装成功后再安装下一个）。
+pip install pyinstaller
+pip install pyqt5
+pip install pandas
+pip install scikit-learn
+3.双击Stress_Prediction-ML.exe运行程序，输入对应几何参数点击OK得出预测值。
+4.每次结果对应输入参数可复制保存，便于分析。
+
 The Local_Stress_Prediction package includes a mature stress prediction software, as well as a script and an ABAQUS plugin for generating datasets, all of which are publicly available.
 1. The mature stress prediction software can be used directly and is designed for Q345 material under ambient temperature conditions. It utilizes the pressure as a feature for machine learning to predict local stresses in Q345 pressure vessels at ambient temperature. In summary, it is suitable for predicting local stresses in Q345 pressure vessels under ambient temperature conditions.
 2. The script and ABAQUS plugin for generating datasets are both publicly available and serve the purpose of generating datasets. By modifying the script or plugin, personalized datasets can be generated, regardless of the material or operating conditions. These tools establish the computational model and calculate the stresses, with the ability to modify only the material parameters and not recommended for modifying other parameters. The generated datasets are stored in .txt files and can be transformed into usable datasets as needed.
 3. After generating personalized datasets, the ML.py script can be used for machine learning to obtain personalized predictive models. This enables the generation of stress prediction models for any operating conditions and materials.
 The process involves selecting features and performing calculations in ABAQUS software to generate a dataset (Data Set, DS) before conducting machine learning. The software development primarily focuses on the training phase, where an appropriate model is selected for training and the trained model is evaluated to ensure accurate stress predictions. Finally, the trained model is embedded in the software, and a Graphical User Interface (GUI) is created.
 This research achievement has developed a pressure vessel local stress prediction software using ABAQUS and machine learning, eliminating the need for complex analysis procedures and subjectivity. It provides a reliable and convenient platform for the rapid evaluation and optimization of pressure vessel designs, while also serving as a reference for other stress prediction applications.
+
+instructions for use：GenerateDataset
+1. Copy the "GenerateDataset" folder to 'C:\Users\Username\abaqus_plugins'.
+2. Open ABAQUS, and you will find "GenerateDataset" under the "Plug-ins" menu.
+3. Open "GenerateDataset" and enter the parameters. Click "OK" to complete the batch analysis.
+4. In the folder "C:\temp\Local_pipe_analysis", you will find the "MaxMises.txt" file.
+5. Copy or convert the data into the desired format for your dataset.
+6. ![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/49572c2a-caaa-4e6a-9090-987c8b25dfff)
+
+instructions for use：Stress_Prediction-ML
+1. Press Win+R to open the Run dialog box, then type "cmd" and press Enter. This will open the Command Prompt window.
+2. In the Command Prompt window, enter the following commands (install one after another once the previous one is installed):
+   - pip install pyinstaller
+   - pip install pyqt5
+   - pip install pandas
+   - pip install scikit-learn
+3. Double-click on "Stress_Prediction-ML.exe" to run the program. Enter the corresponding geometric parameters and click OK to obtain the predicted values.
+4. You can copy and save the results for each set of input parameters for further analysis.
