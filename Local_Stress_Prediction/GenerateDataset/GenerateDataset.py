@@ -4,8 +4,9 @@ from caeModules import *
 import os
 import time
 import math
+import random
 
-def BatchAnalysis(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, a2, i5, P1, P2, i6, Density, Elastic1, Elastic2, Plastic1, Plastic2, Z_N, X_N, Y_N, Z_NM, X_NM, Y_NM, CPU, GPU):
+def GenerateDataset(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, a2, i5, P1, P2, i6, Density, Elastic1, Elastic2, Plastic1, Plastic2, Z_N, X_N, Y_N, Z_NM, X_NM, Y_NM, CPU, GPU):
     Date = (time.strftime('%Y%m%d', time.localtime(time.time())))
     T_values = [random.uniform(T1, T2) for _ in range(i1)]
     t_values = [random.uniform(t1, t2) for _ in range(i2)]
