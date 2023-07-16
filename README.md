@@ -15,7 +15,8 @@ instructions for use：GenerateDataset
 2.打开GenerateDataset输入参数，点击OK即可完成批量分析。
 4.在文件夹C:\\temp\\Local_pipe_analysis下找到MaxMises.txt。
 5.将数据复制或转换为您需要的数据集格式即可。
-![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/49572c2a-caaa-4e6a-9090-987c8b25dfff)
+![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/00921a70-cf9f-492a-b3ba-baa27769d7b5)
+
 
 instructions for use：Stress_Prediction-ML
 1.win+R输入cmd后按回车，打开命令提示符窗口。
@@ -45,7 +46,8 @@ instructions for use：GenerateDataset
 3. Open "GenerateDataset" and enter the parameters. Click "OK" to complete the batch analysis.
 4. In the folder "C:\temp\Local_pipe_analysis", you will find the "MaxMises.txt" file.
 5. Copy or convert the data into the desired format for your dataset.
-![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/49572c2a-caaa-4e6a-9090-987c8b25dfff)
+![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/4b4ee3bb-7a3a-40c0-81dc-edb464f7a6b8)
+
 
 instructions for use：Stress_Prediction-ML
 1. Press Win+R to open the Run dialog box, then type "cmd" and press Enter. This will open the Command Prompt window.
