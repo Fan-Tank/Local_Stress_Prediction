@@ -4,12 +4,32 @@
 # Note: thisDir is defined by the Activator class when
 #       this file gets executed
 
+# Import necessary modules
 from rsg.rsgGui import *
 from abaqusConstants import INTEGER, FLOAT
+
+# Get the directory name where this script is located
 execDir = os.path.split(thisDir)[1]
-dialogBox = RsgDialog(title='Stress analysis at nozzle-GenerateDataset', kernelModule='GenerateDataset', kernelFunction='GenerateDataset', includeApplyBtn=False, includeSeparator=True, okBtnText='OK', applyBtnText='Apply', execDir=execDir)
+
+# Create a dialog box for user input
+dialogBox = RsgDialog(
+    title='Stress analysis at nozzle-GenerateDataset',
+    kernelModule='GenerateDataset',
+    kernelFunction='GenerateDataset',
+    includeApplyBtn=False,
+    includeSeparator=True,
+    okBtnText='OK',
+    applyBtnText='Apply',
+    execDir=execDir
+)
+
+# Create a vertical frame inside the dialog box
 RsgVerticalFrame(name='VFrame_5', p='DialogBox', layout='0', pl=0, pr=0, pt=0, pb=0)
+
+# Create a horizontal frame inside the dialog box
 RsgHorizontalFrame(name='HFrame_1', p='DialogBox', layout='0', pl=0, pr=0, pt=0, pb=0)
+
+# Create a vertical frame inside the horizontal frame
 RsgVerticalFrame(name='VFrame_4', p='HFrame_1', layout='0', pl=0, pr=0, pt=0, pb=0)
 RsgLabel(p='VFrame_4', text='Geometric parameter(mm)', useBoldFont=True)
 RsgTextField(p='VFrame_4', fieldType='Float', ncols=10, labelText='Barrel length L:', keyword='L1', default='3000')
@@ -29,8 +49,14 @@ RsgTextField(p='VFrame_4', fieldType='Float', ncols=10, labelText='differences',
 RsgTextField(p='VFrame_4', fieldType='Float', ncols=10, labelText='Nozzle tilt Angle a1(\xa1\xe3):', keyword='a1', default='0')
 RsgTextField(p='VFrame_4', fieldType='Float', ncols=10, labelText='Nozzle tilt Angle a2(\xa1\xe3):', keyword='a2', default='1')
 RsgTextField(p='VFrame_4', fieldType='Float', ncols=10, labelText='differences', keyword='i5', default='6')
+
+# Create another vertical frame inside the horizontal frame
 RsgVerticalFrame(name='VFrame_8', p='HFrame_1', layout='0', pl=0, pr=0, pt=0, pb=0)
+
+# Create a horizontal frame inside VFrame_8
 RsgHorizontalFrame(name='HFrame_3', p='VFrame_8', layout='0', pl=0, pr=0, pt=0, pb=0)
+
+# Create a vertical frame inside HFrame_3
 RsgVerticalFrame(name='VFrame_3', p='HFrame_3', layout='0', pl=0, pr=0, pt=0, pb=0)
 RsgLabel(p='VFrame_3', text='material parameter          ', useBoldFont=True)
 RsgTextField(p='VFrame_3', fieldType='Float', ncols=10, labelText='Mass density(kg/m3):', keyword='Density', default='7.85E-09')
@@ -41,6 +67,8 @@ RsgTextField(p='VFrame_3', fieldType='Float', ncols=10, labelText='Plastic strai
 RsgSeparator(p='VFrame_3')
 RsgTextField(p='VFrame_3', fieldType='Float', ncols=10, labelText='Cpu Number:', keyword='CPU', default='2')
 RsgTextField(p='VFrame_3', fieldType='Float', ncols=10, labelText='Gpu Number:', keyword='GPU', default='0')
+
+# Create a vertical frame inside HFrame_3
 RsgVerticalFrame(name='VFrame_1', p='HFrame_3', layout='0', pl=0, pr=0, pt=0, pb=0)
 RsgLabel(p='VFrame_1', text='Load parameter', useBoldFont=True)
 RsgTextField(p='VFrame_4', fieldType='Float', ncols=10, labelText='Inside radius of nozzle P1:', keyword='P1', default='1')
@@ -52,7 +80,12 @@ RsgTextField(p='VFrame_1', fieldType='Float', ncols=10, labelText='Horizontal fo
 RsgTextField(p='VFrame_1', fieldType='Float', ncols=10, labelText='Torque about the Z-axis(N*mm):', keyword='Z_NM', default='1E-5')
 RsgTextField(p='VFrame_1', fieldType='Float', ncols=10, labelText='Bending moment about X-axis(N*mm):', keyword='X_NM', default='1E-5')
 RsgTextField(p='VFrame_1', fieldType='Float', ncols=10, labelText='Bending moment about Y-axis(N*mm):', keyword='Y_NM', default='1E-5')
+
+# Add an image icon to the dialog box
 RsgIcon(p='VFrame_8', fileName=r'2.png')
-osutils.copy(os.path.join(thisDir,r'2.png'), dialogBox.execDir, force=True)
-RsgLabel(p='VFrame_8', text='!Please make sure that each parameter is entered.', useBoldFont=True)
+osutils.copy(os.path.join(thisDir, r'2.png'), dialogBox.execDir, force=True)  # Copy an image file to the dialog box's execution directory
+
+RsgLabel(p='VFrame_8', text='!Please make sure that each parameter is entered.', useBoldFont=True)  # Add a caution label
+
+# Show the dialog box to the user
 dialogBox.show()
