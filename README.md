@@ -1,4 +1,6 @@
 # Local_Stress_Prediction
+# A Local Stress Prediction Software for Pressure Vessel Based On ABAQUS-Machine Learning
+In summary, the ABAQUS plugin or script is used to generate a dataset, which will be utilized for machine learning to create a model that performs the prediction task. We have employed this approach to develop a model for a specific condition and material, resulting in a mature stress prediction software. This software is designed for predicting local stresses in Q345 material pressure vessels under ambient temperature conditions.
 
 The Local_Stress_Prediction package includes a mature stress prediction software, as well as a script and an ABAQUS plugin for generating datasets, all of which are publicly available.
 1. The mature stress prediction software can be used directly and is designed for Q345 material under ambient temperature conditions. It utilizes the pressure as a feature for machine learning to predict local stresses in Q345 pressure vessels at ambient temperature. In summary, it is suitable for predicting local stresses in Q345 pressure vessels under ambient temperature conditions.
@@ -28,7 +30,6 @@ pip install seaborn
 4. You can copy and save the results for each set of input parameters for further analysis.
 ![GUI-1](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/272e7740-fe9c-46c1-bdc3-c2b0d0729617)
 
-A Local Stress Prediction Software for Pressure Vessel Based On ABAQUS-Machine Learning
 
 Local_Stress_Prediction包括了一个成熟的应力预测软件、一个用于生成数据集的ABAQUS脚本和一个同样作用的插件、用于机器学习并生成模型的Python代码。
 总的来说，ABAQUS插件或脚本是用于生成数据集的，这个数据集将被用作机器学习并生成模型，这个模型将会完成预测的任务。我们已经基于这个方式完成了一种特点工况和材料下的模型，并将其制作成了一个成熟的应力预测软件，其适用于常温下Q345材料压力容器的局部应力预测。
