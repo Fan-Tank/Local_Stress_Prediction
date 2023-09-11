@@ -1,26 +1,27 @@
 # Local_Stress_Prediction
 A Local Stress Prediction Software for Pressure Vessel Based On ABAQUS-Machine Learning
 
-Local_Stress_Prediction包括了一个成熟的应力预测软件，同时还公开了一个用于生成数据集的脚本和一个用于生成数据集的ABAQUS插件。
-1、成熟的应力预测软件可以直接使用，其将Q345作为材料，将常温作为工况。在这基础上将几何参数给压力作为特征进行机器学习并得出该软件。总的来说，其适用于常温下Q345材料压力容器的局部应力预测。
-2、一个用于生成数据集的脚本和一个用于生成数据集的ABAQUS插件都是公开的，其功能是用来生成数据集。修改脚本或插件并允许可以获取个性化的数据集，不限材料和工况。
-该脚本或插件会建立接管模型并进行计算，从而得出应力，对于其修改只限于材料参数，不建议修改其他参数。数据集会生成在.txt文件中，根据需求可以转变为可用的数据集。
-3、生成个性化的数据集后可根据ML.py进行机器学习，得到个性化的预测模型。这一就可以生成任何工况和材料下的应力预测模型。
-首先，进行机器学习之前，需要选择特征并使用ABAQUS软件对案例进行计算，以生成数据集（Data Set，DS）。其次，软件的开发主要集中在训练模型阶段，选择适当的模型进行训练，并对训练完成的模型进行评估，以确保其能够准确预测应力。最后，将训练好的模型内嵌在软件中，并创建图形用户界面（Graphical User Interface，GUI）。
-这一研究成果通过ABAQUS-机器学习的方式开发了压力容器局部应力的预测软件，避免了复杂的分析过程和主观性，为快速评估和优化压力容器的设计提供了一个可靠便捷的平台，也为其他的应力预测提供了方式借鉴。
+Local_Stress_Prediction包括了一个成熟的应力预测软件、一个用于生成数据集的ABAQUS脚本和一个同样作用的插件、用于机器学习并生成模型的Python代码。  
+总的来说，ABAQUS插件或脚本是用于生成数据集的，这个数据集将被用作机器学习并生成模型，这个模型将会完成预测的任务。我们已经基于这个方式完成了一种特点工况和材料下的模型，并将其制作成了一个成熟的应力预测软件，其适用于常温下Q345材料压力容器的局部应力预测。  
+1、成熟的应力预测软件可以直接使用，其将Q345作为材料，将常温作为工况。在这基础上将几何参数给压力作为特征进行机器学习并得出该软件。  
+2、一个用于生成数据集的脚本和一个用于生成数据集的ABAQUS插件都是公开的，其功能是用来生成数据集。修改脚本或插件并允许可以获取个性化的数据集，不限材料和工况。  
+该脚本或插件会建立接管模型并进行计算，从而得出应力，对于其修改只限于材料参数，不建议修改其他参数。数据集会生成在.txt文件中，根据需求可以转变为可用的数据集。  
+3、生成个性化的数据集后可根据ML.py进行机器学习，得到个性化的预测模型。这一就可以生成任何工况和材料下的应力预测模型。  
+首先，进行机器学习之前，需要选择特征并使用ABAQUS软件对案例进行计算，以生成数据集（Data Set，DS）。其次，软件的开发主要集中在训练模型阶段，选择适当的模型进行训练，并对训练完成的模型进行评估，以确保其能够准确预测应力。最后，将训练好的模型内嵌在软件中，并创建图形用户界面（Graphical User Interface，GUI）。  
+这一研究成果通过ABAQUS-机器学习的方式开发了压力容器局部应力的预测软件，避免了复杂的分析过程和主观性，为快速评估和优化压力容器的设计提供了一个可靠便捷的平台，也为其他的应力预测提供了方式借鉴。  
 
-instructions for use：GenerateDataset
-1.将GenerateDataset文件夹复制在  ’C:\Users\用户名\abaqus_plugins‘  下。
-2.打开ABAQUS,在Plug-ins下可以找到GenerateDataset。
-2.打开GenerateDataset输入参数，点击OK即可完成批量分析。
-4.在文件夹C:\\temp\\Local_pipe_analysis下找到MaxMises.txt。
-5.将数据复制或转换为您需要的数据集格式即可。
+instructions for use：GenerateDataset  
+1.将GenerateDataset文件夹复制在“C:\Users\用户名\abaqus_plugins”下。  
+2.打开ABAQUS,在Plug-ins下可以找到GenerateDataset。  
+2.打开GenerateDataset输入参数，点击OK即可完成批量分析。  
+4.在文件夹C:\\temp\\Local_pipe_analysis下找到MaxMises.txt。  
+5.将数据复制或转换为您需要的数据集格式即可。  
 ![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/00921a70-cf9f-492a-b3ba-baa27769d7b5)
 
-
-instructions for use：Stress_Prediction-ML
-1.win+R输入cmd后按回车，打开命令提示符窗口。
-2.在命令提示符窗口分输入以下语句（一个安装成功后再安装下一个）。
+  
+instructions for use：Stress_Prediction-ML  
+1.win+R输入cmd后按回车，打开命令提示符窗口。  
+2.在命令提示符窗口分输入以下语句（一个安装成功后再安装下一个）。  
 pip install pyinstaller
 pip install pyqt5
 pip install pandas
