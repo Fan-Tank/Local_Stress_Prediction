@@ -1,7 +1,8 @@
 # Local_Stress_Prediction
 # A Local Stress Prediction Software for Pressure Vessel Based On ABAQUS-Machine Learning
 Local_Stress_Prediction consists of an ABAQUS script and a corresponding plugin used for generating a dataset, a Python code segment for machine learning and model generation, and a mature stress prediction software.In summary, the ABAQUS plugin or script is utilized to generate a dataset, which is then employed for machine learning and model creation. This model subsequently performs the prediction task. Initially, prior to machine learning, the ABAQUS plugin or script (GenerateDataset) is used to select features and compute cases to generate the dataset (Data Set, DS). Next, the Python code for machine learning (ML.py) is used to choose an appropriate model for training, evaluate the trained model to ensure its accurate stress prediction capabilities. Finally, the trained model is embedded within the software, and a graphical user interface (GUI) is created. We have applied this approach to develop a model for specific conditions and materials, resulting in a mature stress prediction software (Stress_Prediction-ML). This software is designed for predicting local stresses in Q345 material pressure vessels under ambient temperature conditions.
-![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/95b96797-7b49-4060-80ca-4391ac877ebd)
+![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/142d0db6-8d8b-4ecc-80a5-f68c86019c26)
+
 
 1. Both an ABAQUS script and a corresponding plugin, used for generating a dataset, are publicly available, serving the purpose of dataset creation. This script or plugin constructs a nozzle model and conducts calculations to derive stress. Modifications to the script or plugin are limited to material parameters, and changes to other parameters are not recommended. The dataset is generated and stored in a .txt file, which can be transformed into a usable dataset as needed.
 2. After generating the dataset, machine learning is performed using Python code (ML.py) to create a customized predictive model. This allows for the generation of stress prediction models for any working condition and material. This model carries out the prediction task, and users can develop a graphical user interface (GUI) to make it a complete software accessible to non-technical individuals.
@@ -31,7 +32,8 @@ pip install seaborn
 
 Local_Stress_Prediction包括一个用于生成数据集的ABAQUS脚本和一个同样作用的插件、一段用于机器学习并生成模型的Python代码和一个成熟的应力预测软件。  
 总的来说，ABAQUS插件或脚本是用于生成数据集的，这个数据集将被用作机器学习并生成模型，这个模型将会完成预测的任务。首先，进行机器学习之前，需要利用ABAQUS插件或脚本（GenerateDataset），选择特征对案例进行计算，以生成数据集（Data Set，DS）。其次，利用机器学习的Python代码（ML.py），选择适当的模型进行训练，并对训练完成的模型进行评估，以确保其能够准确预测应力。最后，将训练好的模型内嵌在软件中，并创建图形用户界面（Graphical User Interface，GUI）。我们已经基于这个方式完成了一种特点工况和材料下的模型，并将其制作成了一个成熟的应力预测软件（Stress_Prediction-ML），其适用于常温下Q345材料压力容器的局部应力预测。  
-![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/baa5c37a-f9cf-45af-912d-f26aa0ea4308)
+![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/8e8a164d-2b5b-42c2-9d6f-24b70caed336)
+
 
 1. 一个用于生成数据集的ABAQUS脚本和一个同样作用的插件都是公开的，其功能是用来生成数据集。该脚本或插件会建立接管模型并进行计算，从而得出应力。修改脚本或插件可以获取特点材料和工况下的数据集。对于其修改只限于材料参数，不建议修改其他参数。数据集会生成在.txt文件中，根据需求可以转变为可用的数据集。
 2. 生成数据集后可，根据机器学习的Python代码（ML.py）进行机器学习，得到个性化的预测模型。这就可以生成任何工况和材料下的应力预测模型。这个模型将会完成预测任务，用户还可以为其制作GUI并得到完整的软件共非技术人员使用。
