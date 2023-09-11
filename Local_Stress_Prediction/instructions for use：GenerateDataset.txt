@@ -1,4 +1,4 @@
-1、将GenerateDataset文件夹复制在  ’C:\Users\用户名\abaqus_plugins‘  下。
+1、将GenerateDataset文件夹复制在  “C:\Users\用户名\abaqus_plugins” 下。
 2、打开ABAQUS,在Plug-ins下可以找到GenerateDataset。
 3、打开GenerateDataset输入参数，点击OK即可完成批量分析。
 4、在文件夹C:\\temp\\Local_pipe_analysis下找到MaxMises.txt。
