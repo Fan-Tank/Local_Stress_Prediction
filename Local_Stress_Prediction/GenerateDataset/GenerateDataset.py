@@ -1,3 +1,4 @@
+# Import ABAQUS modules and libraries
 from abaqus import *
 from abaqusConstants import *
 from caeModules import *
@@ -6,20 +7,27 @@ import time
 import math
 import random
 
+# Define a function to generate a dataset
 def GenerateDataset(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, a2, i5, P1, P2, i6, Density, Elastic1, Elastic2, Plastic1, Plastic2, Z_N, X_N, Y_N, Z_NM, X_NM, Y_NM, CPU, GPU):
+    # Get the current date
     Date = (time.strftime('%Y%m%d', time.localtime(time.time())))
+
+    # Generate random parameter values
     T_values = [random.uniform(T1, T2) for _ in range(i1)]
     t_values = [random.uniform(t1, t2) for _ in range(i2)]
     R_values = [random.uniform(R1, R2) for _ in range(i3)]
     r_values = [random.uniform(r1, r2) for _ in range(i4)]
     a_values = [random.uniform(a1, a2) for _ in range(i5)]
     P_values = [random.uniform(P1, P2) for _ in range(i6)]
+
+    # Iterate through different combinations of parameter values
     for T in T_values:
         for t in t_values:
             for R in R_values:
                 for r in r_values:
                     for a in a_values:
                         for P in P_values:
+                            # Calculate various position and dimension values based on parameters
                             L = L1
                             h =h1
                             H = h + R + T
@@ -47,61 +55,86 @@ def GenerateDataset(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, 
                                 T) + '-' + str(r) + '-' + str(t) + 'mm_' + str(a) + "d_" + str(CYPressure) + 'MPa')
                             os.makedirs(dir_path)
                             os.chdir(dir_path)
-                            cliCommand("""Mdb()""")
-                            mod = mdb.models["Model-1"]
-                            skt = mod.ConstrainedSketch(name='__profile__', sheetSize=2000.0)
-                            skt.CircleByCenterPerimeter(center=(0.0, 0.0), point1=(R, 0.0))
-                            skt.CircleByCenterPerimeter(center=(0.0, 0.0), point1=(R+T, 0.0))
+                            
+                            # Create an ABAQUS model
+                            cliCommand("""Mdb()""")  # Open the ABAQUS model database
+                            mod = mdb.models["Model-1"]  # Get the ABAQUS model with the name "Model-1"
+                            
+                            # Define sketches for creating various parts
+                            skt = mod.ConstrainedSketch(name='__profile__', sheetSize=2000.0)  # Create a sketch for profile definition
+                            skt.CircleByCenterPerimeter(center=(0.0, 0.0), point1=(R, 0.0))  # Create a circle sketch
+                            skt.CircleByCenterPerimeter(center=(0.0, 0.0), point1=(R+T, 0.0))  # Create another circle sketch
+
+                            # Create and extrude the first part (tongti-1)
                             pObj1 = mod.Part(name='tongti-1', dimensionality=THREE_D, type=DEFORMABLE_BODY)
                             pObj1.BaseSolidExtrude(sketch=skt, depth=L)
-                            del mod.sketches['__profile__']
+                            del mod.sketches['__profile__']  # Delete the sketch
+
+                            # Create and extrude the second part (jieguan-1)
                             skt = mod.ConstrainedSketch(name='__profile__', sheetSize=2000.0)
                             skt.CircleByCenterPerimeter(center=(0.0, 0.0), point1=(r, 0.0))
                             skt.CircleByCenterPerimeter(center=(0.0, 0.0), point1=(r+t, 0.0))
                             pObj2 = mod.Part(name='jieguan-1', dimensionality=THREE_D, type=DEFORMABLE_BODY)
                             pObj2.BaseSolidExtrude(sketch=skt, depth=H)
                             del mod.sketches['__profile__']
+
+                            # Create and extrude the third part (yuanzhu-1)
                             skt = mod.ConstrainedSketch(name='__profile__', sheetSize=2000.0)
                             skt.CircleByCenterPerimeter(center=(0.0, 0.0), point1=(R+T, 0.0))
                             pObj3 = mod.Part(name='yuanzhu-1', dimensionality=THREE_D, type=DEFORMABLE_BODY)
                             pObj3.BaseSolidExtrude(sketch=skt, depth=L)
                             del mod.sketches['__profile__']
+
+                            # Create and extrude the fourth part (yuanzhu-2)
                             skt = mod.ConstrainedSketch(name='__profile__', sheetSize=2000.0)
                             skt.CircleByCenterPerimeter(center=(0.0, 0.0), point1=(r, 0.0))
                             pObj4 = mod.Part(name='yuanzhu-2', dimensionality=THREE_D, type=DEFORMABLE_BODY)
                             pObj4.BaseSolidExtrude(sketch=skt, depth=H)
                             del mod.sketches['__profile__']
-                            asm = mod.rootAssembly
-                            asm.DatumCsysByDefault(CARTESIAN)
+
+                            # Create instances and perform transformations
+                            asm = mod.rootAssembly  # Get the assembly
+                            asm.DatumCsysByDefault(CARTESIAN)  # Create a default Cartesian coordinate system
                             asm.Instance(name='tongti-1-1', part=pObj1, dependent=ON)
                             asm.Instance(name='yuanzhu-2-1', part=pObj4, dependent=ON)
+                            # Rotate and translate yuanzhu-2 instance
                             asm = mod.rootAssembly
                             asm.rotate(instanceList=('yuanzhu-2-1',), axisPoint=(0.0, 0.0, 0.0),
                                        axisDirection=(10.0, 0.0, 0.0), angle=-90-a)
                             asm.translate(instanceList=('yuanzhu-2-1',), vector=(0.0, 0.0, 0.5 * L))
+                            # Create composite parts by subtracting instances
                             asm.InstanceFromBooleanCut(name='tongti',
                                                        instanceToBeCut=mod.rootAssembly.instances['tongti-1-1'],
                                                        cuttingInstances=(asm.instances['yuanzhu-2-1'],),
                                                        originalInstances=DELETE)
+                            # Create instances for other parts (jieguan-1 and yuanzhu-1)
                             asm.Instance(name='jieguan-1-1', part=pObj2, dependent=ON)
                             asm.Instance(name='yuanzhu-1-1', part=pObj3, dependent=ON)
+                            # Rotate and translate jieguan-1 instance
                             asm = mod.rootAssembly
                             asm.rotate(instanceList=('jieguan-1-1',), axisPoint=(0.0, 0.0, 0.0),
                                        axisDirection=(10.0, 0.0, 0.0), angle=-90-a)
                             asm.translate(instanceList=('jieguan-1-1',), vector=(0.0, 0.0, 0.5 * L))
+                            # Create composite parts by subtracting instances
                             asm.InstanceFromBooleanCut(name='jieguan',
                                                        instanceToBeCut=mod.rootAssembly.instances['jieguan-1-1'],
                                                        cuttingInstances=(asm.instances['yuanzhu-1-1'],),
                                                        originalInstances=DELETE)
+                            # Create a final composite part by merging tongti and jieguan
                             asm.InstanceFromBooleanMerge(name='zhengti', instances=(asm.instances['tongti-1'],
                                                                                     asm.instances['jieguan-1'],), keepIntersections=ON,
                                                          originalInstances=DELETE, domain=GEOMETRY)
+
+                            # Define material properties for the model
                             mod.Material(name=MaterialName)
                             mod.materials[MaterialName].Density(table=((CyDensity,),))
                             mod.materials[MaterialName].Elastic(table=((CyElastic[0], CyElastic[1]),))
                             mod.materials[MaterialName].Plastic(table=((CYPlastic[0], CYPlastic[1]),))
+                            # Create a section for the composite part
                             mod.HomogeneousSolidSection(name='Section-1', material=MaterialName, thickness=None)
-                            pObj = mod.parts['zhengti']
+                            pObj = mod.parts['zhengti']  # Get the composite part
+                            
+                            # Define sets and surfaces for boundary conditions
                             pickedFaces1 = pObj.faces.getByBoundingCylinder([0, 0, -1E5], [0, 0, 1E5], 0.5 * sum([R, R+T]))
                             surf1 = pObj.Surface(name="Surf-InFaces1", side1Faces=pickedFaces1)
                             pickedFaces2 = pObj.faces.getByBoundingCylinder([0, 0, 0.5 * L], [0, math.cos(math.radians(a))*(H + 1E-3),
@@ -158,6 +191,8 @@ def GenerateDataset(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, 
                                 pObj.PartitionCellByPlaneNormalToEdge(edge=pObj.edges[26], point=pObj.vertices[19], cells=pickedCells)
                             else:
                                 pass
+
+                            # Create the mesh for the composite part
                             pObj.seedPart(size=meshSize, deviationFactor=0.1, minSizeFactor=0.1)
                             pickedEdges = pObj.edges.getByBoundingBox(-1E5, -1E-3, -1E-3, 1E5, 1E-3, 1E-3)
                             pObj.seedEdgeByNumber(edges=pickedEdges, number=layerNum, constraint=FINER)
@@ -165,6 +200,8 @@ def GenerateDataset(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, 
                                                                       1E-5, A1[1] + 1E-3, L - 1E-3)
                             pObj.seedEdgeByNumber(edges=pickedEdges, number=layerNum, constraint=FINER)
                             pObj.generateMesh()
+
+                            # Define the simulation step and boundary conditions
                             mod.StaticStep(name='Step-1', previous='Initial', maxNumInc=10000, minInc=1e-10)
                             asm = mod.rootAssembly
                             asm.ReferencePoint(point=[B[0], B[1], B[2]])
@@ -192,12 +229,18 @@ def GenerateDataset(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, 
                                          amplitude=UNSET)
                             region = insObj.sets['Set-Fixed']
                             mod.EncastreBC(name='BC-1', createStepName='Step-1', region=region, localCsys=None)
+
+                            # Create an ABAQUS job
                             mdb.Job(name=jobName, model='Model-1', numCpus=CpuNumber, description=annotation, numDomains=CpuNumber, numGPUs=GpuNumber)
                             mdb.jobs[jobName].submit(consistencyChecking=OFF)
                             mdb.jobs[jobName].waitForCompletion()
+
+                            # Open the ABAQUS result database file
                             odbObj = session.openOdb(name=jobName + '.odb')
                             viewport = session.viewports['Viewport: 1']
                             viewport.setValues(displayedObject=odbObj)
+
+                            # Find the coordinates of the point with the maximum stress in the results
                             viewport.odbDisplay.setPrimaryVariable(variableLabel='S', outputPosition=INTEGRATION_POINT,
                                                                    refinement=(INVARIANT, 'Mises'), )
                             viewport.odbDisplay.display.setValues(plotState=(CONTOURS_ON_UNDEF,))
@@ -212,6 +255,8 @@ def GenerateDataset(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, 
                                 nid = p.nodeLabel
                                 node2coord[nid] = [node2coord[nid][i] + p.data[i] for i in range(3)]
                             maxMisesNodeCoord = node2coord[maxMisesNode]
+
+                            # Find the point with the shortest distance from the maxMisesNode on the inner surface
                             exFaceNodes = insObj.nodeSets['SET-EXFACES'].nodes
                             minDist = 1E15
                             minDistNid = -1
@@ -231,6 +276,8 @@ def GenerateDataset(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, 
                             v1, v2 = [line1[1][i] - line1[0][i] for i in range(3)], [line2[1][i] - line2[0][i] for i in range(3)]
                             d1, d2 = sqrt(v1[0] ** 2 + v1[1] ** 2 + v1[2] ** 2), sqrt(v2[0] ** 2 + v2[1] ** 2 + v2[2] ** 2)
                             v1, v2 = [v1[i] / d1 for i in range(3)], [v2[i] / d2 for i in range(3)]
+                            
+                            # Find the point with the shortest distance from the maxMisesNode to the surface of the nozzle and cylinder respectively
                             inFaceNodes = insObj.nodeSets['SET-INFACES'].nodes
                             minDist1 = [1E15, 1E15]
                             minDistNid1 = [-1, -1]
@@ -254,6 +301,8 @@ def GenerateDataset(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, 
                                          expression=((insObj.name, (minDistNid, minDistNid1[0],)),))
                             session.Path(name='Path-MinDistNode2InFace2', type=NODE_LIST,
                                          expression=((insObj.name, (minDistNid, minDistNid1[1],)),))
+                            
+                            # Stress linearization (SCL-AA)
                             path = session.paths['Path-MaxMisesNode2ExFace']
                             xyList = session.linearizeStress(name='SCL-AA', path=path, modelShape=DEFORMED,
                                                              xyMembraneComps=('S11', 'S22', 'S33',),
@@ -267,6 +316,7 @@ def GenerateDataset(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, 
                             chart.setValues(curvesToPlot=curveList)
                             session.charts[chartName].autoColor(lines=True, symbols=True)
                             session.viewports['Viewport: 1'].setValues(displayedObject=xyp)
+                            # Stress linearization (SCL-BB)
                             path = session.paths['Path-MinDistNode2InFace1']
                             xyList = session.linearizeStress(name='SCL-BB', path=path, modelShape=DEFORMED,
                                                              xyMembraneComps=('S11', 'S22', 'S33',),
@@ -279,6 +329,7 @@ def GenerateDataset(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, 
                             curveList = session.curveSet(xyList)
                             chart.setValues(curvesToPlot=curveList)
                             session.charts[chartName].autoColor(lines=True, symbols=True)
+                            # Stress linearization (SCL-CC)
                             path = session.paths['Path-MinDistNode2InFace2']
                             xyList = session.linearizeStress(name='SCL-CC', path=path, modelShape=DEFORMED,
                                                              xyMembraneComps=('S11', 'S22', 'S33',),
@@ -291,8 +342,12 @@ def GenerateDataset(L1, h1, R1, R2, i1, T1, T2, i2, r1, r2, i3, t1, t2, i4, a1, 
                             curveList = session.curveSet(xyList)
                             chart.setValues(curvesToPlot=curveList)
                             session.charts[chartName].autoColor(lines=True, symbols=True)
+
+                            # Save the ABAQUS model
                             mdb.saveAs(pathName=dir_path + '/Local_pipe_analysis')
                             del session.xyPlots['XYPlot-1']
+
+                            # Save calculation result
                             odbObj = session.openOdb(name=jobName + '.odb')
                             step_name = 'Step-1'
                             frame_num = -1
