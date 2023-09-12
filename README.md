@@ -1,5 +1,5 @@
 ## Local_Stress_Prediction
-### A Local Stress Prediction Software for Pressure Vessel Based On ABAQUS-Machine Learning
+### Pressure Vessel Nozzle Local Stress Prediction Software Based on ABAQUS-Machine Learning
 The Local_Stress_Prediction package comprises an ABAQUS script and a corresponding plugin (GenerateDataset) for generating datasets, Python code for machine learning and model generation, and a comprehensive stress prediction software (Stress_Prediction-ML). This means that users can refer to these publicly available files to create stress prediction software tailored to specific working conditions and materials.
 1. One ABAQUS script and one plugin are publicly available and serve the purpose of generating datasets. This script or plugin is capable of creating nozzle models in batches based on user-provided parameters and subsequently calculating the stress within them. All the calculated data is saved in a .txt file, which can be transformed into datasets in various formats as per requirements. Modifying the script or plugin allows users to obtain datasets for different materials and working conditions, although it is recommended to limit modifications to material parameters and avoid altering other parameters.
 2. After generating the dataset, machine learning can be performed using Python code to create personalized predictive models. This enables the generation of stress prediction models for any working conditions and materials. These models are designed to carry out predictive tasks, and users have the option to develop graphical user interfaces (GUIs) to provide fully-fledged software that can be used by non-technical individuals.
@@ -32,7 +32,7 @@ pip install seaborn
 ![GUI-1](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/272e7740-fe9c-46c1-bdc3-c2b0d0729617)
 
 ## Local_Stress_Prediction
-### A Local Stress Prediction Software for Pressure Vessel Based On ABAQUS-Machine Learning
+### Pressure Vessel Nozzle Local Stress Prediction Software Based on ABAQUS-Machine Learning
 Local_Stress_Prediction包括一个用于生成数据集的ABAQUS脚本和一个同样作用的插件（GenerateDataset）、一段用于机器学习并生成模型的Python代码（Machine learning code）和一个完整的应力预测软件（Stress_Prediction-ML）。这意味着，用户可以参考使用这些已经公开的文件制作专属工况和材料下的应力预测软件。
 1.	一个ABAQUS脚本和一个插件是公开的，其功能是用来生成数据集。该脚本或插件会根据用户提供的参数批量的建立接管模型，并计算得出应力。所有的计算数据会生成在一个txt文件中，根据需求可以转变为其他格式的数据集。修改脚本或插件可以获取其他材料和工况下的数据集，对于其修改只限于材料参数，不建议修改其他参数。
 2.	生成数据集后可，根据机器学习的Python代码进行机器学习，得到个性化的预测模型。这就可以生成任何工况和材料下的应力预测模型。这个模型将会完成预测任务，用户还可以为其制作GUI并得到完整的软件提供给非技术人员使用。
