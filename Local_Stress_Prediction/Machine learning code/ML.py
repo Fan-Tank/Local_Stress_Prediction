@@ -9,7 +9,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 import pickle
 
 # Read the dataset, specify the encoding as GBK
-data = pd.read_csv('date-2.csv', encoding='GBK')
+data = pd.read_csv('date-1.csv', encoding='GBK')
 
 # Extract features and target variable
 X = data[['T', 't', 'R', 'r', 'a', 'P']]
