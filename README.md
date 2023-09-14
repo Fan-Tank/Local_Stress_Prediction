@@ -49,7 +49,6 @@ pip install seaborn
 16. **Data Visualization**: A scatter plot is created to visualize the predicted values (`y_pred`) against the true values (`y_test`). A diagonal dashed line represents a perfect prediction.
 This code essentially demonstrates the process of training and evaluating a Gradient Boosting Regressor model for predicting 'stress' based on input features. It also showcases the use of hyperparameter tuning and cross-validation to optimize and assess model performance.
 ![屏幕截图 2023-09-14 203250](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/72adab16-e6d5-4062-8267-262b0549a7fe)
-![屏幕截图 2023-09-14 203230](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/91b4db19-c0a0-4618-bd88-0473a8d6b04d)
 
 ## Local_Stress_Prediction
 ### Pressure Vessel Nozzle Local Stress Prediction Software Based on ABAQUS-Machine Learning
@@ -102,5 +101,5 @@ pip install seaborn
 15. **保存模型**：将训练好的模型保存为.pkl（Pickle）文件，文件名为'model-2.pkl'，以便将来使用。
 16. **数据可视化**：创建散点图以可视化预测值（`y_pred`）与真实值（`y_test`）之间的关系。一条对角虚线代表完美预测。
 这段代码实际上展示了如何训练和评估一个梯度提升回归器模型，以基于输入特征预测'stress'。它还展示了超参数调优和交叉验证的使用，以优化和评估模型性能。
-![屏幕截图 2023-09-14 203250](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/72adab16-e6d5-4062-8267-262b0549a7fe)
 ![屏幕截图 2023-09-14 203230](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/91b4db19-c0a0-4618-bd88-0473a8d6b04d)
+![屏幕截图 2023-09-14 203250](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/72adab16-e6d5-4062-8267-262b0549a7fe)
