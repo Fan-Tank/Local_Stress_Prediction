@@ -20,8 +20,6 @@ This code essentially demonstrates the process of training and evaluating a Grad
 
 instructions for use：ML code
 
-以下是对给定机器学习代码的中文详细描述：
-
 1. **导入库**：代码首先导入了必要的Python库，包括NumPy、Pandas、Matplotlib、Seaborn，以及Scikit-Learn（sklearn）中的各种模块。这些库用于数据处理、建模和评估。
 2. **读取数据**：代码使用Pandas的`read_csv`函数从名为'date-1.csv'的CSV文件中读取数据集。它指定编码为'GBK'，以处理数据集中可能存在的字符编码问题。
 3. **提取特征和目标变量**：从数据集中提取特征（自变量）和目标变量（因变量）。特征存储在变量`X`中，包括列'T'、't'、'R'、'r'、'a'和'P'。目标变量'stress'存储在`y`中。
