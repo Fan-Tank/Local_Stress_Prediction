@@ -8,7 +8,8 @@ The Local_Stress_Prediction package comprises an ABAQUS script and a correspondi
 In summary, the ABAQUS plugin or script is used for generating datasets (Data Set, DS), which are then employed for machine learning and model generation. The primary task of this model is stress prediction. For convenience, a graphical user interface (Graphical User Interface, GUI) can be created to develop it into a complete software application.
 Firstly, the ABAQUS plugin or script is used to select features for case calculations to generate datasets. Secondly, machine learning Python code is employed to choose an appropriate model for training and evaluate the trained model to ensure accurate stress predictions. Finally, the trained model is embedded in the software, and a GUI is created.
 We have already utilized this approach to develop a model for specific working conditions and materials, resulting in a mature stress prediction software (Stress_Prediction-ML). This software is suitable for predicting local stresses in Q345 material pressure vessels under normal temperature conditions.
-![1](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/35bd610c-edd0-4543-9827-aedf65b0bcd9)
+
+![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/cea37d53-5141-4fa2-ac77-9b6436246e88)
 
 ### instructions for use：GenerateDataset
 1. Copy the "GenerateDataset" folder to 'C:\Users\Username\abaqus_plugins'.
@@ -47,7 +48,7 @@ pip install seaborn
 14. **Cross-Validation**: Cross-validation is performed using `cross_val_score` to obtain a more robust assessment of the model's performance. The mean R-squared score from cross-validation is printed.
 15. **Model Saving**: The trained model is saved as a `.pkl` (Pickle) file named 'model-2.pkl' for future use.
 16. **Data Visualization**: A scatter plot is created to visualize the predicted values (`y_pred`) against the true values (`y_test`). A diagonal dashed line represents a perfect prediction.
-This code essentially demonstrates the process of training and evaluating a Gradient Boosting Regressor model for predicting 'stress' based on input features. It also showcases the use of hyperparameter tuning and cross-validation to optimize and assess model performance.
+This code essentially demonstrates the process of training and evaluating a Gradient Boosting Regressor model for predicting 'stress' based on input features. It also showcases the use of hyperparameter tuning and cross-validation to optimize and assess model performance.  
 ![屏幕截图 2023-09-14 203250](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/72adab16-e6d5-4062-8267-262b0549a7fe)
 
 ## Local_Stress_Prediction
@@ -59,8 +60,8 @@ Local_Stress_Prediction包括一个用于生成数据集的ABAQUS脚本和一个
    
 总的来说，ABAQUS插件或脚本用于生成数据集（Data Set，DS），这个数据集将被用作机器学习并生成模型，这个模型将会完成应力预测的主要任务。为了方便，可以创建图形用户界面（Graphical User Interface，GUI），并制作为完整的软件形式。
 首先，利用ABAQUS插件或脚本，选择特征对案例进行计算，以生成数据集。其次，利用机器学习的Python代码，选择适当的模型进行训练，并对训练完成的模型进行评估，以确保其能够准确预测应力。最后，将训练好的模型内嵌在软件中，并创建GUI。
-我们已经基于这个方式完成了一种特点工况和材料下的模型，并将其制作成了一个成熟的应力预测软件（Stress_Prediction-ML），其适用于常温下的Q345材料压力容器的局部应力预测。 
-![1](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/af7df3c2-d6f3-4c83-bcfa-aa0481a0832b)
+我们已经基于这个方式完成了一种特点工况和材料下的模型，并将其制作成了一个成熟的应力预测软件（Stress_Prediction-ML），其适用于常温下的Q345材料压力容器的局部应力预测。
+![image](https://github.com/Fan-Tank/Local_Stress_Prediction/assets/76890876/8e2466a9-a917-497d-8fc8-6a56d46a3a48)
 
 ### instructions for use：GenerateDataset
 1. 将GenerateDataset文件夹复制在“C:\Users\用户名\abaqus_plugins”下。
